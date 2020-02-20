@@ -11,10 +11,7 @@ import (
 // cqp: 版本: 1.0.1:1
 // cqp: 作者: Werifu
 // cqp: 简介: 供给风蓝东方project群使用
-const(
-	th_group = 280569556
-	my_qq = 1363195380
-)
+
 func main() { /*此处应当留空*/}
 
 func init() {
@@ -55,12 +52,12 @@ func GroupCMD(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous, msg 
 		}else if cmd == "jrxy" {	//今日性欲
 			cqp.SendGroupMsg(fromGroup, "[CQ:at,qq="+strconv.Itoa(int(fromQQ))+"] \n今日性欲："+strconv.Itoa(controller.Roll_xy(114,514,fromQQ))+"\n(114~514)")
 		}else if cmd == "test" {	//测试代码
-			cqp.SendPrivateMsg(my_qq, "测试用")
+			cqp.SendPrivateMsg(controller.MyQQ, "测试用")
 		}else if cmd == "img"{
 			controller.SendImgNum(fromGroup, fromQQ)
 		}else if cmd == "kusa"{
 			controller.SendKusaNum(fromGroup,fromQQ)
-		}else if cmd == "_clear" && fromQQ == my_qq{
+		}else if cmd == "_clear" && fromQQ == controller.MyQQ{
 			util.ClearDaily(fromGroup)
 		}else if util.IsAtCMD(cmd){	//响应at命令
 			cqp.SendGroupMsg(fromGroup, controller.At_times(cmd))

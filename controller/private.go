@@ -5,9 +5,7 @@ import (
 	"github.com/werifu/touhou_bot/util"
 )
 
-const (
-	myqq = 1363195380
-)
+
 
 
 func Repeat(subType, msgID int32, fromQQ int64, msg string, font int32) int32 {

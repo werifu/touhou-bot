@@ -14,7 +14,6 @@ import (
 	"time"
 )
 const(
-	th_group = 280569556
 	text_path = "D:\\werifu\\CQA-xiaoi\\酷Q Air\\dev\\me.cqp.werifu.thbot\\text\\"
 )
 
@@ -26,10 +25,10 @@ func OnlyPushHY() int32{		//定时单推滑音爹
 		now := time.Now()
 		if now.Minute() == 0{
 			remsg := "现在是系统时间:"+ now.Format("2006-01-02 15:04:05") + "\n让我们一起单推滑音爹"
-			cqp.SendGroupMsg(th_group, remsg)
+			cqp.SendGroupMsg(THGroup, remsg)
 			if now.Hour() == 0 {
-				cqp.SendGroupMsg(th_group, "今日统计已归零")
-				util.ClearDaily(th_group)
+				cqp.SendGroupMsg(THGroup, "今日统计已归零")
+				util.ClearDaily(THGroup)
 			}
 			time.Sleep(time.Minute *59)
 		}else{
@@ -112,7 +111,7 @@ func Ana_img(msg string){
 	reg,_ := regexp.Compile("=[0-9a-zA-Z]{20,60}\\.jpg")
 	file := reg.Find([]byte(msg))[1:]
 	url := cqp.GetImage(string(file))
-	cqp.SendPrivateMsg(myqq, url)
+	cqp.SendPrivateMsg(MyQQ, url)
 }
 
 func SendKusaNum(fromGroup, fromQQ int64) int32 {
