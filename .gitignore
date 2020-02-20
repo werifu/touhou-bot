@@ -1,8 +1,21 @@
 .vscode/
+
 .idea/
+
+#sth private
 controller/account.go
+
+#useless
 touhou_bot-master.zip
+
+#config
 config.json
+
+#will generate autimatically
 app.json
+
+#gotest
 gotest/*.go
+
+#
 instruction.md
