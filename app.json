@@ -2,11 +2,11 @@
 	"ret": 1,
 	"apiver": 9,
 	"appid": "me.cqp.werifu.thbot",
-	"name": "",
-	"version": "",
-	"version_id": 0,
-	"author": "",
-	"description": "",
+	"name": "thbot",
+	"version": "1.0.1",
+	"version_id": 4,
+	"author": "Werifu",
+	"description": "供给风蓝东方project群使用",
 	"event": [
 		{
 			"name": "插件启用",

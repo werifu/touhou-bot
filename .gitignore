@@ -1,2 +1,8 @@
 .vscode/
 .idea/
+controller/account.go
+touhou_bot-master.zip
+config.json
+app.json
+gotest/*.go
+instruction.md

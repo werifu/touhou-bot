@@ -11,7 +11,6 @@ import (
 // cqp: 版本: 1.0.1:1
 // cqp: 作者: Werifu
 // cqp: 简介: 供给风蓝东方project群使用
-
 func main() { /*此处应当留空*/}
 
 func init() {
