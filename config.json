@@ -1,0 +1,16 @@
+{
+  "path": {
+    "text_path": "D:\\werifu\\CQA-xiaoi\\酷Q Air\\dev\\me.cqp.werifu.thbot\\text\\"
+  },
+  "account": {
+    "th_group": 280569556,
+    "my_qq": 1363195380
+  },
+  "mongo": {
+    "url" : "127.0.0.1:27017",
+    "DBname" : "hustth",
+    "speak_info_table" : "speakinfo",
+    "self_determined_cmd"　: "reflections"
+  }
+
+}

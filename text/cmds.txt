@@ -1,0 +1,10 @@
+现有的命令：
+.help   命令列表
+.jrxy   今日性欲
+.rollth 东方正作老黄历
+.@sb *int   重复@sb
+.at     地图@
+.kusa   今日生草数
+.img    今日发图数
+def 命令 return 回复    调教功能
+
