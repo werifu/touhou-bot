@@ -34,33 +34,37 @@ func GroupCMD(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous, msg 
 	if util.IsTeach(msg){
 		controller.Teach(fromGroup,fromQQ,msg)
 	}
-	if msg[0] == '.'{
+	if msg[0] == '.' {
 		cmd := msg[1:]
 		//cqp.SendGroupMsg(fromGroup, cmd)
-		if util.Is114514(cmd){
+		if util.Is114514(cmd) {
 			cqp.SendGroupMsg(fromGroup, "这么臭的命令有什么执行的必要吗")
 			return 0
-		}else if cmd == "help" { //打印指令集
+		} else if cmd == "help" { //打印指令集
 			controller.Help(fromGroup)
-		}else if cmd == "at" { //at那些id带@一下的
+		} else if cmd == "at" { //at那些id带@一下的
 			controller.Send_atAll(fromGroup)
-		}else if cmd == "rollth" { //随机正作
+		} else if cmd == "rollth" { //随机正作
 			thyes, thno := controller.Roll_th()
 			str = "今日宜：" + thyes + "\n今日不宜：" + thno
 			cqp.SendGroupMsg(fromGroup, str)
-		}else if cmd == "jrxy" {	//今日性欲
-			cqp.SendGroupMsg(fromGroup, "[CQ:at,qq="+strconv.Itoa(int(fromQQ))+"] \n今日性欲："+strconv.Itoa(controller.Roll_xy(114,514,fromQQ))+"\n(114~514)")
-		}else if cmd == "test" {	//测试代码
+		} else if cmd == "jrxy" { //今日性欲
+			cqp.SendGroupMsg(fromGroup, "[CQ:at,qq="+strconv.FormatInt(fromQQ, 10)+"] \n今日性欲："+strconv.Itoa(controller.Roll_xy(114, 514, fromQQ))+"\n(114~514)")
+		} else if cmd == "test" { //测试代码
 			cqp.SendPrivateMsg(controller.MyQQ, "测试用")
-		}else if cmd == "img"{
+		} else if cmd == "img" {
 			controller.SendImgNum(fromGroup, fromQQ)
-		}else if cmd == "kusa"{
-			controller.SendKusaNum(fromGroup,fromQQ)
-		}else if cmd == "_clear" && fromQQ == controller.MyQQ{
+		} else if cmd == "kusa" {
+			controller.SendKusaNum(fromGroup, fromQQ)
+		} else if cmd == "_clear" && fromQQ == controller.MyQQ {
 			util.ClearDaily(fromGroup)
-		}else if util.IsAtCMD(cmd){	//响应at命令
+		} else if util.IsAtCMD(cmd) { //响应at命令
 			cqp.SendGroupMsg(fromGroup, controller.At_times(cmd))
-		}else{
+		} else if cmd == "ufo" {
+			cqp.SendGroupMsg(fromGroup, "[CQ:at,qq="+strconv.FormatInt(fromQQ, 10)+"] \n "+controller.Roll_ufo())
+		} else if cmd == "sleep" {
+			controller.SleepBan(fromGroup, fromQQ)
+		} else{
 			cqp.SendGroupMsg(fromGroup, "Unknown command")
 		}
 	}

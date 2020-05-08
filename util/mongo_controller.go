@@ -13,7 +13,7 @@ type SpeakInfo struct {
 
 //SpeakInfo 发言记录相关内容
 const (
-	URL = "127.0.0.1:27017"
+	URL = "mongo:27017"
 	DBname = "hustth"
 	SpeakInfoTable = "speakinfo"
 )

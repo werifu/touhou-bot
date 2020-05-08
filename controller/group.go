@@ -2,6 +2,7 @@ package controller
 
 import (
 	"bufio"
+	"fmt"
 	"github.com/Tnze/CoolQ-Golang-SDK/v2/cqp"
 	"github.com/werifu/touhou_bot/util"
 	"io/ioutil"
@@ -14,7 +15,7 @@ import (
 	"time"
 )
 const(
-	text_path = "D:\\werifu\\CQA-xiaoi\\酷Q Air\\dev\\me.cqp.werifu.thbot\\text\\"
+	text_path = "./dev/me.cqp.werifu.thbot/text/"
 )
 
 
@@ -74,6 +75,8 @@ func Roll_th() (string, string) {
 	numYse, numNo := util.RollByDay(1,12)
 	gamesList, err := os.Open(text_path+"thgames.txt")
 	if err != nil{
+		pwd, _ := os.Getwd()
+		cqp.SendPrivateMsg(MyQQ, pwd)
 		log.Fatal("Can't open the file")
 	}
 	scanner := bufio.NewScanner(gamesList)
@@ -97,6 +100,24 @@ func Roll_th() (string, string) {
 	}
 	return yes,no
 }
+
+func Roll_ufo() string{
+	var result []string
+	var ufo = make(chan string, 1)
+	for i:=0;i<3;i++ {
+		select {
+		case ufo<-"红":
+			result = append(result, "红")
+		case ufo<-"蓝":
+			result = append(result, "蓝")
+		case ufo<-"绿":
+			result = append(result, "绿")
+		}
+		<-ufo
+	}
+	return strings.Join(result, " ")
+}
+
 
 func Roll_xy(min int, max int, fromQQ int64) int{
 	now := time.Now()
@@ -165,7 +186,7 @@ func Teach(fromGroup, fromQQ int64, str string) int32 {
 		util.InsertCmd(newRef)
 	}else{
 		if util.IsRefTheSame(ref, newRef){	//如果是同一个反射
-			if util.IsIn(newRef.TeacherQQs[0], ref.TeacherQQs){	//一个人重复设置，跳过不管
+			if util.IsIn_int64(newRef.TeacherQQs[0], ref.TeacherQQs){	//一个人重复设置，跳过不管
 				return 0
 			}
 			err := util.UpdateRef(newRef)
@@ -187,3 +208,13 @@ func Teach(fromGroup, fromQQ int64, str string) int32 {
 	return 0
 }
 
+func SleepBan(fromGroup, fromQQ int64) int32 {
+	var sleepTime = int64(util.Roll(6*60*60, 8*60*60))
+	var hours = sleepTime / 3600
+	var min = (sleepTime - (hours*3600))/60
+	var sec = sleepTime % 60
+	cqp.SetGroupBan(fromGroup, fromQQ, sleepTime)
+	cqp.SendGroupMsg(fromGroup, fmt.Sprintf("[CQ:at,qq=%s]\n获得%d小时%d分钟%d秒精致睡眠\n晚安！",
+		strconv.FormatInt(fromQQ,10), hours, min, sec))
+	return 0
+}

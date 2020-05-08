@@ -6,5 +6,7 @@
 .at     地图@
 .kusa   今日生草数
 .img    今日发图数
+.ufo    开碟
+.sleep  精致睡眠套餐
 def 命令 return 回复    调教功能
 

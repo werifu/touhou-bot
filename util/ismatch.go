@@ -43,6 +43,9 @@ func HasKusa(msg string) bool{
 func IsTeach(str string) bool {
 	reg := regexp.MustCompile(`[^ ]{1,30}`)
 	cmds := reg.FindAllString(str, -1)
+	if len(cmds) < 4{
+		return false
+	}
 	if cmds[0] == "def" && cmds[2] == "return"{
 		return true
 	}else {

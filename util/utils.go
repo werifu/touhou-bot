@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"regexp"
+	"strings"
 	"time"
 )
 
@@ -39,7 +40,8 @@ func RollByDay(min, max int)(int,int){
 }
 
 
-func IsIn(one interface{}, all...interface{}) bool {
+func IsIn_int64(one int64, all []int64) bool {
+
 	for _, b := range all{
 		if one == b{
 			return true
@@ -51,7 +53,7 @@ func IsIn(one interface{}, all...interface{}) bool {
 func ParseRef(str string)(cmd, remsg string){
 	reg := regexp.MustCompile(`[^ ]{1,30}`)
 	cmds := reg.FindAllString(str, -1)
-	return cmds[1],cmds[3]
+	return cmds[1],strings.Join(cmds[3:], " ")
 }
 
 
